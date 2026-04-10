@@ -6,324 +6,57 @@
 <title>Eagler.Host Plugins | Modern Plugin Marketplace</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-body {
-font-family: 'Inter', sans-serif;
-background: radial-gradient(circle at top center, #241810 0%, #0f0a05 100%);
-background-attachment: fixed;
-color: #ece3d8;
-line-height: 1.5;
-letter-spacing: -0.01em;
-}
-:root {
---brown-deepest: #0f0a05;
---brown-deep: #150f09;
---brown-dark: #1e1610;
---brown-mid: #2c2016;
---orange-bright: #e67e22;
---orange-deep: #c95a0f;
---orange-glow: #f39c12;
---cream-text: #f2e3cf;
---card-bg: #1a130d;
---border-dim: #3d2a1b;
---box-bg: #1b140e;
---discord-blue: #5865F2;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top center, #241810 0%, #0f0a05 100%); background-attachment: fixed; color: #ece3d8; line-height: 1.5; letter-spacing: -0.01em; }
+:root { --brown-deepest: #0f0a05; --brown-deep: #150f09; --brown-dark: #1e1610; --brown-mid: #2c2016; --orange-bright: #e67e22; --orange-deep: #c95a0f; --orange-glow: #f39c12; --cream-text: #f2e3cf; --card-bg: #1a130d; --border-dim: #3d2a1b; --box-bg: #1b140e; --discord-blue: #5865F2; }
 
-/* Discord Glow Animation */
-@keyframes discord-glow {
-0% { box-shadow: 0 0 5px rgba(88, 101, 242, 0.4); transform: scale(1); }
-50% { box-shadow: 0 0 20px rgba(88, 101, 242, 0.8); transform: scale(1.05); }
-100% { box-shadow: 0 0 5px rgba(88, 101, 242, 0.4); transform: scale(1); }
-}
+@keyframes discord-glow { 0% { box-shadow: 0 0 5px rgba(88, 101, 242, 0.4); transform: scale(1); } 50% { box-shadow: 0 0 20px rgba(88, 101, 242, 0.8); transform: scale(1.05); } 100% { box-shadow: 0 0 5px rgba(88, 101, 242, 0.4); transform: scale(1); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
 
-.header {
-border-bottom: 1px solid var(--border-dim);
-background: var(--brown-deep);
-position: sticky;
-top: 0;
-z-index: 100;
-box-shadow: 0 2px 12px rgba(0,0,0,0.5);
-}
-.container {
-max-width: 1400px;
-margin: 0 auto;
-padding: 0 28px;
-}
-.nav {
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 14px 0;
-flex-wrap: wrap;
-gap: 20px;
-}
-.logo-area {
-display: flex;
-align-items: center;
-gap: 12px;
-}
-.logo-img {
-height: 44px;
-width: auto;
-border-radius: 10px;
-filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
-}
-.site-title {
-font-size: 1.5rem;
-font-weight: 800;
-background: linear-gradient(135deg, var(--orange-bright), #ffb347);
-background-clip: text;
--webkit-background-clip: text;
-color: transparent;
-letter-spacing: -0.5px;
-}
-.nav-buttons-center {
-display: flex;
-gap: 8px;
-background: var(--brown-dark);
-padding: 6px;
-border-radius: 60px;
-border: 1px solid var(--border-dim);
-}
-.nav-btn {
-background: transparent;
-border: none;
-padding: 8px 22px;
-border-radius: 40px;
-font-weight: 600;
-font-size: 0.85rem;
-cursor: pointer;
-transition: all 0.2s;
-font-family: inherit;
-color: #e6ccb3;
-display: flex;
-align-items: center;
-gap: 6px;
-}
-.nav-btn:hover {
-background: #2a1f16;
-color: white;
-}
-.nav-btn.active-tab {
-background: var(--orange-bright);
-color: #0f0a05;
-box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-.right-actions {
-display: flex;
-gap: 10px;
-align-items: center;
-}
-.icon-action-btn {
-background: #2a1f16;
-border: 1px solid var(--border-dim);
-width: 40px;
-height: 40px;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-color: #e2c7a3;
-transition: 0.2s;
-padding: 0;
-}
-.icon-action-btn:hover {
-background: #3e2c1f;
-border-color: var(--orange-bright);
-color: white;
-}
-.discord-btn {
-background: var(--discord-blue);
-border: none;
-color: white;
-animation: discord-glow 3s infinite ease-in-out;
-}
-.discord-btn:hover {
-background: #4752c4;
-}
+.header { border-bottom: 1px solid var(--border-dim); background: var(--brown-deep); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+.container { max-width: 1400px; margin: 0 auto; padding: 0 28px; }
+.nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; flex-wrap: wrap; gap: 20px; }
+.logo-area { display: flex; align-items: center; gap: 12px; }
+.logo-img { height: 44px; width: auto; border-radius: 10px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4)); }
+.site-title { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, var(--orange-bright), #ffb347); background-clip: text; -webkit-background-clip: text; color: transparent; letter-spacing: -0.5px; }
+.nav-buttons-center { display: flex; gap: 8px; background: var(--brown-dark); padding: 6px; border-radius: 60px; border: 1px solid var(--border-dim); }
+.nav-btn { background: transparent; border: none; padding: 8px 22px; border-radius: 40px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; font-family: inherit; color: #e6ccb3; display: flex; align-items: center; gap: 6px; }
+.nav-btn:hover { background: #2a1f16; color: white; }
+.nav-btn.active-tab { background: var(--orange-bright); color: #0f0a05; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+.right-actions { display: flex; gap: 10px; align-items: center; }
+.icon-action-btn { background: #2a1f16; border: 1px solid var(--border-dim); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #e2c7a3; transition: 0.2s; padding: 0; }
+.icon-action-btn:hover { background: #3e2c1f; border-color: var(--orange-bright); color: white; }
 
-/* Placeholder Views for Tabs */
-.placeholder-view {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-text-align: center;
-padding: 80px 20px;
-background: var(--card-bg);
-border: 1px solid var(--border-dim);
-border-radius: 24px;
-margin: 40px auto;
-box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-max-width: 800px;
-}
-.placeholder-view svg.main-icon {
-width: 64px;
-height: 64px;
-color: var(--orange-bright);
-margin-bottom: 24px;
-}
-.placeholder-view h2 {
-font-size: 2.2rem;
-font-weight: 800;
-color: #ffd7a5;
-margin-bottom: 12px;
-letter-spacing: -0.5px;
-}
-.placeholder-view p {
-color: #decbae;
-font-size: 1.1rem;
-max-width: 500px;
-margin-bottom: 32px;
-line-height: 1.6;
-}
-.discord-btn-large {
-background: var(--discord-blue);
-color: white;
-border: none;
-padding: 16px 36px;
-border-radius: 50px;
-font-weight: 800;
-font-size: 1.1rem;
-cursor: pointer;
-display: flex;
-align-items: center;
-gap: 12px;
-transition: 0.2s;
-text-decoration: none;
-box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
-}
-.discord-btn-large:hover {
-background: #4752c4;
-transform: translateY(-2px);
-box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
-}
+.header-discord-btn { background: var(--discord-blue); border: none; color: white; animation: discord-glow 3s infinite ease-in-out; height: 40px; padding: 0 18px; border-radius: 40px; display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: 0.2s; font-family: inherit; }
+.header-discord-btn:hover { background: #4752c4; }
+.add-plugin-btn { background: var(--orange-bright); border: none; color: #0f0a05; height: 40px; padding: 0 18px; border-radius: 40px; font-weight: 800; font-size: 0.9rem; cursor: pointer; transition: 0.2s; display: none; align-items: center; gap: 8px; }
+.add-plugin-btn:hover { background: #ffb347; transform: translateY(-2px); }
 
-.main-grid {
-display: flex;
-gap: 36px;
-padding: 36px 0;
-}
-.sidebar {
-width: 290px;
-flex-shrink: 0;
-}
-.filter-box {
-background: var(--box-bg);
-border: 1px solid var(--border-dim);
-border-radius: 20px;
-padding: 18px 20px;
-margin-bottom: 24px;
-transition: border 0.2s;
-}
-.filter-box:hover {
-border-color: var(--orange-bright);
-}
-.filter-header {
-font-weight: 800;
-font-size: 0.75rem;
-text-transform: uppercase;
-letter-spacing: 1.5px;
-color: #d4a373;
-margin-bottom: 18px;
-display: flex;
-align-items: center;
-gap: 10px;
-border-bottom: 1px solid var(--border-dim);
-padding-bottom: 12px;
-}
-.filter-header svg {
-width: 16px;
-height: 16px;
-stroke: var(--orange-bright);
-stroke-width: 2.5;
-fill: none;
-}
-.version-buttons {
-display: flex;
-flex-wrap: wrap;
-gap: 10px;
-}
-.version-btn {
-background: #2a1d12;
-border: 1px solid var(--border-dim);
-padding: 8px 16px;
-border-radius: 40px;
-font-family: 'Inter', sans-serif;
-font-weight: 600;
-font-size: 0.8rem;
-cursor: pointer;
-transition: all 0.2s;
-color: #f0cf9f;
-}
-.version-btn.active-version {
-background: var(--orange-bright);
-color: #0f0a05;
-border-color: var(--orange-bright);
-box-shadow: 0 2px 8px rgba(230,126,34,0.3);
-}
-.version-btn.soon {
-opacity: 0.5;
-cursor: not-allowed;
-background: #2f241b;
-}
-.checkbox-group {
-display: flex;
-flex-direction: column;
-gap: 14px;
-}
-.checkbox-item {
-display: flex;
-align-items: center;
-gap: 12px;
-cursor: pointer;
-font-size: 0.9rem;
-font-weight: 500;
-padding: 4px 0;
-color: #e2c7a3;
-}
-.checkbox-item input {
-width: 18px;
-height: 18px;
-cursor: pointer;
-accent-color: var(--orange-bright);
-}
-.cat-icon {
-width: 20px;
-height: 20px;
-display: inline-flex;
-align-items: center;
-justify-content: center;
-}
-.loader-buttons {
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-gap: 12px;
-align-items: flex-start;
-}
-.loader-btn {
-background: transparent;
-padding: 8px 16px;
-border-radius: 40px;
-font-weight: 600;
-font-size: 0.85rem;
-cursor: pointer;
-transition: all 0.2s;
-font-family: inherit;
-display: flex;
-align-items: center;
-gap: 8px;
-}
+.placeholder-view { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 20px; background: var(--card-bg); border: 1px solid var(--border-dim); border-radius: 24px; margin: 40px auto; box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-width: 800px; }
+.placeholder-view svg.main-icon { width: 64px; height: 64px; color: var(--orange-bright); margin-bottom: 24px; }
+.placeholder-view h2 { font-size: 2.2rem; font-weight: 800; color: #ffd7a5; margin-bottom: 12px; letter-spacing: -0.5px; }
+.placeholder-view p { color: #decbae; font-size: 1.1rem; max-width: 500px; margin-bottom: 32px; line-height: 1.6; }
+.discord-btn-large { background: var(--discord-blue); color: white; border: none; padding: 16px 36px; border-radius: 50px; font-weight: 800; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s; text-decoration: none; box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4); }
+.discord-btn-large:hover { background: #4752c4; transform: translateY(-2px); }
+
+.main-grid { display: flex; gap: 36px; padding: 36px 0; }
+.sidebar { width: 290px; flex-shrink: 0; }
+.filter-box { background: var(--box-bg); border: 1px solid var(--border-dim); border-radius: 20px; padding: 18px 20px; margin-bottom: 24px; transition: border 0.2s; }
+.filter-box:hover { border-color: var(--orange-bright); }
+.filter-header { font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #d4a373; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-dim); padding-bottom: 12px; }
+.filter-header svg { width: 16px; height: 16px; stroke: var(--orange-bright); stroke-width: 2.5; fill: none; }
+.version-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+.version-btn { background: #2a1d12; border: 1px solid var(--border-dim); padding: 8px 16px; border-radius: 40px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; color: #f0cf9f; }
+.version-btn.active-version { background: var(--orange-bright); color: #0f0a05; border-color: var(--orange-bright); box-shadow: 0 2px 8px rgba(230,126,34,0.3); }
+.version-btn.soon { opacity: 0.5; cursor: not-allowed; background: #2f241b; }
+.checkbox-group { display: flex; flex-direction: column; gap: 14px; }
+.checkbox-item { display: flex; align-items: center; gap: 12px; cursor: pointer; font-size: 0.9rem; font-weight: 500; padding: 4px 0; color: #e2c7a3; }
+.checkbox-item input { width: 18px; height: 18px; cursor: pointer; accent-color: var(--orange-bright); }
+.cat-icon { width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; }
+.loader-buttons { display: flex; flex-direction: row; flex-wrap: wrap; gap: 12px; align-items: flex-start; }
+.loader-btn { background: transparent; padding: 8px 16px; border-radius: 40px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; font-family: inherit; display: flex; align-items: center; gap: 8px; }
 .loader-btn:hover { background: rgba(255, 255, 255, 0.05); }
 
-/* Loader Colors */
 .loader-btn.bukkit { color: #e67e22; border: 1px solid #e67e22; }
 .loader-btn.spigot { color: #f1c40f; border: 1px solid #f1c40f; }
 .loader-btn.paper { color: #ff5555; border: 1px solid #ff5555; }
@@ -331,211 +64,106 @@ gap: 8px;
 .loader-btn.active-loader.spigot { background: #f1c40f; color: #0f0a05; border-color: #f1c40f; }
 .loader-btn.active-loader.paper { background: #ff5555; color: #0f0a05; border-color: #ff5555; }
 
-.content {
-flex: 1;
-min-width: 0;
-}
-.search-section {
-display: flex;
-gap: 15px;
-align-items: center;
-margin-bottom: 28px;
-flex-wrap: wrap;
-}
-.search-input-wrapper {
-position: relative;
-flex: 1;
-min-width: 200px;
-}
-.search-icon {
-position: absolute;
-left: 24px;
-top: 50%;
-transform: translateY(-50%);
-color: #c9aa7b;
-pointer-events: none;
-}
-.search-input {
-width: 100%;
-background: #1b140e;
-border: 1px solid var(--border-dim);
-padding: 16px 24px 16px 54px;
-border-radius: 60px;
-color: #f2e3cf;
-font-family: inherit;
-font-size: 0.95rem;
-transition: all 0.2s;
-}
-.search-input:focus {
-outline: none;
-border-color: var(--orange-bright);
-box-shadow: 0 0 0 3px rgba(230,126,34,0.1);
-}
-.view-limit-wrap {
-display: flex;
-align-items: center;
-gap: 8px;
-background: #1b140e;
-border: 1px solid var(--border-dim);
-padding: 14px 20px;
-border-radius: 60px;
-color: #c9aa7b;
-font-weight: 600;
-font-size: 0.9rem;
-white-space: nowrap;
-}
-.view-limit-wrap select {
-background: transparent;
-border: none;
-color: var(--orange-bright);
-font-family: inherit;
-font-weight: 800;
-font-size: 1rem;
-cursor: pointer;
-outline: none;
-}
-.view-limit-wrap select option {
-background: #1b140e;
-}
+.content { flex: 1; min-width: 0; }
+.search-section { display: flex; gap: 15px; align-items: center; margin-bottom: 28px; flex-wrap: wrap; }
+.search-input-wrapper { position: relative; flex: 1; min-width: 200px; }
+.search-icon { position: absolute; left: 24px; top: 50%; transform: translateY(-50%); color: #c9aa7b; pointer-events: none; }
+.search-input { width: 100%; background: #1b140e; border: 1px solid var(--border-dim); padding: 16px 24px 16px 54px; border-radius: 60px; color: #f2e3cf; font-family: inherit; font-size: 0.95rem; transition: all 0.2s; }
+.search-input:focus { outline: none; border-color: var(--orange-bright); box-shadow: 0 0 0 3px rgba(230,126,34,0.1); }
+.view-limit-wrap { display: flex; align-items: center; gap: 8px; background: #1b140e; border: 1px solid var(--border-dim); padding: 14px 20px; border-radius: 60px; color: #c9aa7b; font-weight: 600; font-size: 0.9rem; white-space: nowrap; }
+.view-limit-wrap select { background: transparent; border: none; color: var(--orange-bright); font-family: inherit; font-weight: 800; font-size: 1rem; cursor: pointer; outline: none; }
+.view-limit-wrap select option { background: #1b140e; }
 
-.plugins-grid {
-display: flex;
-flex-direction: column;
-gap: 18px;
-}
-.plugin-card {
-background: var(--card-bg);
-border: 1px solid var(--border-dim);
-border-radius: 24px;
-padding: 24px;
-transition: all 0.2s ease;
-cursor: pointer;
-box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-.plugin-card:hover {
-border-color: var(--orange-bright);
-background: #221810;
-transform: translateX(4px);
-}
+.plugins-grid { display: flex; flex-direction: column; gap: 18px; }
+.plugin-card { background: var(--card-bg); border: 1px solid var(--border-dim); border-radius: 24px; padding: 24px; transition: all 0.2s ease; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); position: relative; }
+.plugin-card:hover { border-color: var(--orange-bright); background: #221810; transform: translateX(4px); }
 
-.card-top { display: flex; justify-content: space-between; margin-bottom: 15px; }
+.plugin-tags-container { display: flex; gap: 8px; margin-bottom: 12px; }
+.plugin-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 12px; text-transform: uppercase; }
+.tag-featured { background: rgba(241, 196, 15, 0.1); border: 1px solid #f1c40f; color: #f1c40f; }
+.tag-custom { background: rgba(230, 126, 34, 0.1); border: 1px solid #e67e22; color: #e67e22; }
+.tag-official { background: rgba(46, 204, 113, 0.1); border: 1px solid #2ecc71; color: #2ecc71; }
+
+.card-top { display: flex; justify-content: space-between; margin-bottom: 15px; align-items: flex-start; }
 .plugin-info-main { display: flex; gap: 15px; align-items: center; }
-.plugin-icon { width: 52px; height: 52px; background: linear-gradient(145deg, #3a281c, #261a10); border-radius: 16px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-dim); }
-.plugin-name-section h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 2px; color: #ffd7a5; letter-spacing: -0.3px; }
-.plugin-author { font-size: 0.75rem; color: #c9aa7b; font-weight: 500; }
+.plugin-icon { width: 52px; height: 52px; background: linear-gradient(145deg, #3a281c, #261a10); border-radius: 16px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-dim); overflow: hidden;}
+.plugin-icon img { width: 100%; height: 100%; object-fit: cover; }
+.plugin-name-section h3 { font-size: 1.25rem; font-weight: 800; color: #ffd7a5; }
+.plugin-author { font-size: 0.75rem; color: #c9aa7b; }
 .card-downloads { color: var(--orange-bright); font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; }
 .plugin-description { color: #decbae; font-size: 0.88rem; margin-bottom: 20px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #2d1f14; padding-top: 15px; font-size: 0.75rem; }
 .footer-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-
 .version-tag, .loader-tag, .category-tag { background: #1f140d; border: 1px solid #3d2a1b; padding: 4px 10px; border-radius: 6px; display: inline-flex; align-items: center; font-family: Arial, Helvetica, sans-serif; }
 .meta-divider { width: 1px; height: 14px; background: #4d3522; }
 .version-tag { color: var(--orange-glow); font-weight: 700; }
 .category-tag { color: #f0cf9f; font-weight: 600; gap: 6px; }
-.loader-tag.bukkit { color: #e67e22; border-color: rgba(230, 126, 34, 0.4); font-weight: 600; }
-.loader-tag.spigot { color: #f1c40f; border-color: rgba(241, 196, 15, 0.4); font-weight: 600; }
-.loader-tag.paper { color: #ff5555; border-color: rgba(255, 85, 85, 0.4); font-weight: 600; }
 .date-tag { font-weight: 500; color: #7a5e42; }
 
-/* Pagination Styles */
-.pagination-container {
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 12px;
-margin-top: 36px;
-}
-.page-btn, .page-arrow {
-background: #1b140e;
-border: 1px solid var(--border-dim);
-color: #c9aa7b;
-width: 40px;
-height: 40px;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-font-weight: 600;
-font-size: 0.95rem;
-cursor: pointer;
-transition: all 0.2s;
-font-family: inherit;
-}
-.page-btn:hover:not(.active), .page-arrow:hover:not(:disabled) {
-border-color: var(--orange-bright);
-color: white;
-}
-.page-btn.active {
-background: var(--orange-bright);
-color: #0f0a05;
-border-color: var(--orange-bright);
-box-shadow: 0 0 10px rgba(230, 126, 34, 0.3);
-}
-.page-arrow:disabled {
-opacity: 0.3;
-cursor: not-allowed;
-}
-.page-dots {
-color: #c9aa7b;
-font-weight: 800;
-letter-spacing: 2px;
-margin: 0 4px;
-}
+.pagination-container { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 36px; }
+.page-btn, .page-arrow { background: #1b140e; border: 1px solid var(--border-dim); color: #c9aa7b; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.page-btn.active { background: var(--orange-bright); color: #0f0a05; border-color: var(--orange-bright); }
 
 /* Modals */
 .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.94); backdrop-filter: blur(8px); align-items: center; justify-content: center; z-index: 1000; }
-.modal-content { background: #150f09; border: 1px solid var(--border-dim); border-radius: 20px; max-width: 1200px; width: 95%; min-height: 75vh; max-height: 90vh; overflow-y: auto; animation: fadeUp 0.2s ease; position: relative; display: flex; flex-direction: column; }
-
-/* Mini Settings Modal */
+.modal-content { background: #150f09; border: 1px solid var(--border-dim); border-radius: 20px; max-width: 1200px; width: 95%; min-height: 75vh; max-height: 90vh; overflow-y: auto; position: relative; display: flex; flex-direction: column; animation: fadeUp 0.2s ease; }
 .mini-modal-content { background: #150f09; border: 1px solid var(--orange-bright); border-radius: 20px; max-width: 420px; width: 90%; padding: 40px; text-align: center; position: relative; animation: fadeUp 0.2s ease; }
-
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
 
 .modal-banner { height: 140px; background: linear-gradient(135deg, #3d2616 0%, #150f09 100%); border-bottom: 1px solid var(--border-dim); flex-shrink: 0; }
 .close-modal { position: absolute; top: 16px; right: 24px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-dim); color: #e2c7a3; font-size: 1.5rem; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; z-index: 10; }
-.close-modal:hover { background: #e67e22; color: #000; border-color: #e67e22; }
+.close-modal:hover { background: #e67e22; color: #000; }
 
-.modal-header-info { display: flex; gap: 24px; align-items: flex-end; padding: 0 40px; margin-top: -65px; margin-bottom: 30px; position: relative; z-index: 5; }
-.modal-icon-lg { width: 110px; height: 110px; background: #1a130d; border: 3px solid var(--orange-bright); border-radius: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(0,0,0,0.6); flex-shrink: 0; }
-.modal-title-group { padding-bottom: 10px; }
-.modal-title-group h2 { font-size: 2.2rem; font-weight: 800; color: #ffd7a5; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 6px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-.modal-author-text { color: #c9aa7b; font-size: 1.05rem; }
-.modal-author-text strong { color: #e2c7a3; }
+.modal-header-info { display: flex; gap: 24px; align-items: flex-end; padding: 0 40px; margin-top: -65px; margin-bottom: 30px; position: relative; z-index: 5; justify-content: space-between;}
+.modal-icon-lg { width: 110px; height: 110px; background: #1a130d; border: 3px solid var(--orange-bright); border-radius: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(0,0,0,0.6); flex-shrink: 0; overflow: hidden; }
+.modal-icon-lg img { width: 100%; height: 100%; object-fit: cover; }
+.modal-title-group h2 { font-size: 2.2rem; font-weight: 800; color: #ffd7a5; margin-bottom: 6px; }
+
+/* Admin Modal Controls */
+.admin-modal-controls { display: none; gap: 10px; align-items: center; }
+.admin-action-btn { padding: 10px 20px; border-radius: 12px; font-weight: 800; border: none; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 6px; }
+.edit-btn { background: #f1c40f; color: #000; }
+.delete-btn { background: #e74c3c; color: #fff; }
 
 .modal-layout { display: flex; padding: 0 40px 40px 40px; gap: 40px; flex: 1; align-items: flex-start; }
 .modal-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .modal-sidebar { width: 320px; flex-shrink: 0; }
-
 .modal-tabs { display: flex; gap: 24px; border-bottom: 1px solid var(--border-dim); margin-bottom: 24px; }
 .modal-tab { padding: 12px 0; color: #8a6c4c; font-weight: 600; font-size: 1.05rem; cursor: pointer; border-bottom: 3px solid transparent; transition: 0.2s; }
-.modal-tab:hover { color: #e2c7a3; }
 .modal-tab.active { color: var(--orange-bright); border-bottom-color: var(--orange-bright); }
+.modal-description { color: #decbae; font-size: 1rem; line-height: 1.7; background: #1a130d; padding: 28px; border-radius: 16px; border: 1px solid var(--border-dim); flex: 1; white-space: pre-line; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); overflow-y: auto;}
 
-.modal-description { color: #decbae; font-size: 1rem; line-height: 1.7; background: #1a130d; padding: 28px; border-radius: 16px; border: 1px solid var(--border-dim); flex: 1; white-space: pre-line; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); }
-
-.modal-download { background: var(--orange-bright); color: #0f0a05; border: none; padding: 18px; border-radius: 12px; font-weight: 800; width: 100%; cursor: pointer; font-size: 1.15rem; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 24px; transition: 0.2s; box-shadow: 0 4px 15px rgba(230,126,34,0.2); }
+.modal-download { background: var(--orange-bright); color: #0f0a05; border: none; padding: 18px; border-radius: 12px; font-weight: 800; width: 100%; cursor: pointer; font-size: 1.15rem; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 24px; box-shadow: 0 4px 15px rgba(230,126,34,0.2); transition:0.2s; }
 .modal-download:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230,126,34,0.4); }
 
 .sidebar-box { background: #1a130d; border: 1px solid var(--border-dim); border-radius: 16px; padding: 0 24px; }
 .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-size: 0.95rem; }
-.stat-row-col { display: flex; flex-direction: column; align-items: flex-start; padding: 20px 0; gap: 12px; font-size: 0.95rem; }
+.stat-row-col { display: flex; flex-direction: column; gap: 12px; padding: 20px 0; font-size: 0.95rem; }
 .stat-divider { height: 1px; width: 100%; background: #3d2a1b; }
-
-.stat-label { color: #8a6c4c; font-weight: 600; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.stat-label { color: #8a6c4c; font-weight: 600; display: flex; align-items: center; gap: 10px; }
 .stat-label svg { stroke: #c9aa7b; stroke-width: 2.5; width: 18px; height: 18px; fill: none; }
-.stat-value { color: #e2c7a3; font-weight: 700; text-align: right; display: flex; align-items: center; gap: 6px; }
-
+.stat-value { color: #e2c7a3; font-weight: 700; text-align: right; }
 .modal-loaders-wrapper { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; }
 
-footer { border-top: 1px solid var(--border-dim); padding: 40px; text-align: center; color: #7a5e42; font-size: 0.8rem; font-weight: 500; margin-top: 20px; }
+/* --- ADMIN WIZARD CSS --- */
+.admin-form-group { margin-bottom: 20px; text-align: left; }
+.admin-form-group label { display: block; color: #d4a373; font-weight: 700; font-size: 0.85rem; margin-bottom: 8px; text-transform: uppercase; }
+.admin-input { width: 100%; background: #1b140e; border: 1px solid var(--border-dim); padding: 12px 16px; border-radius: 8px; color: #f2e3cf; font-family: inherit; font-size: 1rem; }
+.admin-input:focus { outline: none; border-color: var(--orange-bright); }
+.admin-textarea { width: 100%; background: #1b140e; border: 1px solid var(--border-dim); padding: 12px 16px; border-radius: 8px; color: #f2e3cf; font-family: inherit; font-size: 1rem; height: 100px; resize: vertical; }
+.multi-select-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.multi-select-btn { background: #2a1d12; border: 1px solid var(--border-dim); color: #f0cf9f; padding: 8px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.2s; text-align: center;}
+.multi-select-btn.selected { background: var(--orange-bright); color: #000; border-color: var(--orange-bright); }
+
+/* Secret Footer X */
+#secretFooterX { display: none; position: fixed; bottom: 10px; right: 15px; color: rgba(255,255,255,0.1); font-size: 1.5rem; cursor: pointer; z-index: 9999; padding: 10px; border-radius: 50%; }
+#secretFooterX:hover { color: rgba(255,255,255,0.8); background: rgba(0,0,0,0.5); }
+
+footer { border-top: 1px solid var(--border-dim); padding: 40px; text-align: center; color: #7a5e42; font-size: 0.8rem; font-weight: 500; margin-top: 20px; position: relative;}
 
 @media (max-width: 900px) { 
-    .main-grid { flex-direction: column; } 
-    .sidebar { width: 100%; } 
+    .main-grid { flex-direction: column; } .sidebar { width: 100%; } 
     .modal-header-info { margin-top: -40px; padding: 0 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
-    .modal-layout { flex-direction: column; padding: 0 20px 20px 20px; gap: 20px;}
-    .modal-sidebar { width: 100%; }
-    .modal-tabs { overflow-x: auto; white-space: nowrap; }
+    .modal-layout { flex-direction: column; padding: 0 20px 20px 20px; gap: 20px;} .modal-sidebar { width: 100%; }
 }
 </style>
 </head>
@@ -549,22 +177,23 @@ footer { border-top: 1px solid var(--border-dim); padding: 40px; text-align: cen
 </div>
 <div class="nav-buttons-center">
 <button class="nav-btn active-tab" id="discoverBtn">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-    Discover
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg> Discover
 </button>
 <button class="nav-btn" id="newsBtn">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-    News
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg> News
 </button>
 <button class="nav-btn" id="supportBtn">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-    Support
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg> Support
 </button>
 </div>
 <div class="right-actions">
-<button class="icon-action-btn" id="settingsBtn" title="Settings">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+<button class="add-plugin-btn" id="headerAddPluginBtn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Add Plugin
 </button>
+<a href="https://discord.gg/vV7JUTChbc" target="_blank" style="text-decoration: none;">
+    <button class="header-discord-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C.533 9.048-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg> Discord</button>
+</a>
+<button class="icon-action-btn" id="settingsBtn" title="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></button>
 </div>
 </div>
 </div>
@@ -574,12 +203,7 @@ footer { border-top: 1px solid var(--border-dim); padding: 40px; text-align: cen
 <div class="main-grid">
 <aside class="sidebar">
 <div class="filter-box">
-<div class="filter-header">
-<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
-</svg>
-GAME VERSION
-</div>
+<div class="filter-header">GAME VERSION</div>
 <div class="version-buttons">
 <button class="version-btn active-version" data-ver="1.8.8">1.8.8</button>
 <button class="version-btn active-version" data-ver="1.12.2">1.12.2</button>
@@ -587,12 +211,7 @@ GAME VERSION
 </div>
 </div>
 <div class="filter-box">
-<div class="filter-header">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-<rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>
-</svg>
-CATEGORIES
-</div>
+<div class="filter-header">CATEGORIES</div>
 <div class="checkbox-group" id="categoryCheckboxes">
 <label class="checkbox-item"><input type="checkbox" value="economy" checked> <span class="cat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e67e22" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M9 12h6"/></svg></span> <span>Economy</span></label>
 <label class="checkbox-item"><input type="checkbox" value="optimization" checked> <span class="cat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e67e22" stroke-width="2.5"><path d="m12 14 4-4-4-4M3 3.41 7 7.41 3 11.41M11 17h10M11 21h10"/></svg></span> <span>Optimization</span></label>
@@ -602,12 +221,7 @@ CATEGORIES
 </div>
 </div>
 <div class="filter-box">
-<div class="filter-header">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-</svg>
-LOADER
-</div>
+<div class="filter-header">LOADER</div>
 <div class="loader-buttons" id="loaderButtons">
 <button class="loader-btn active-loader bukkit" data-loader="Bukkit"><img src="https://i.ibb.co/Z1JjtbTN/images-removebg-preview.png" alt="Bukkit" width="16" height="16" style="vertical-align:middle;"> Bukkit</button>
 <button class="loader-btn active-loader spigot" data-loader="Spigot"><img src="https://i.ibb.co/ymQYxRLJ/download-removebg-preview-5.png" alt="Spigot" width="16" height="16" style="vertical-align:middle;"> Spigot</button>
@@ -621,30 +235,11 @@ LOADER
         <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <input type="text" id="searchInput" class="search-input" placeholder="Search Plugins...">
     </div>
-    
-    <div class="view-limit-wrap">
-        <span>Sort:</span>
-        <select id="sortBySelect">
-            <option value="default" selected>Default</option>
-            <option value="downloads">Most Downloads</option>
-            <option value="newest">Newest Added</option>
-            <option value="az">Alphabetical (A-Z)</option>
-        </select>
-    </div>
-
-    <div class="view-limit-wrap">
-        <span>View:</span>
-        <select id="viewLimitSelect">
-            <option value="5">5</option>
-            <option value="10" selected>10</option>
-            <option value="15">15</option>
-        </select>
-    </div>
+    <div class="view-limit-wrap"><span>Sort:</span><select id="sortBySelect"><option value="default" selected>Default</option><option value="downloads">Most Downloads</option><option value="newest">Newest Added</option><option value="az">Alphabetical (A-Z)</option></select></div>
+    <div class="view-limit-wrap"><span>View:</span><select id="viewLimitSelect"><option value="5">5</option><option value="10" selected>10</option><option value="15">15</option></select></div>
 </div>
 <div id="pluginsGrid" class="plugins-grid"></div>
-
 <div id="paginationContainer" class="pagination-container"></div>
-
 </main>
 </div>
 </div>
@@ -654,10 +249,7 @@ LOADER
         <svg class="main-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
         <h2>News & Announcements</h2>
         <p>This Tab is being worked on right now! Join our Discord to see any announcements, updates, and more!</p>
-        <a href="#" target="_blank" class="discord-btn-large">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C.533 9.048-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-            Join Discord Server
-        </a>
+        <a href="https://discord.gg/vV7JUTChbc" target="_blank" class="discord-btn-large">Join Discord Server</a>
     </div>
 </div>
 
@@ -666,26 +258,25 @@ LOADER
         <svg class="main-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
         <h2>Support Center</h2>
         <p>This Tab is being worked on right now! If you need support, please join our discord server with the button below.</p>
-        <a href="#" target="_blank" class="discord-btn-large">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C.533 9.048-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-            Join Discord Server
-        </a>
+        <a href="https://discord.gg/vV7JUTChbc" target="_blank" class="discord-btn-large">Join Discord Server</a>
     </div>
 </div>
-
 
 <div id="pluginModal" class="modal">
     <div class="modal-content">
         <button class="close-modal" id="closeModalBtn">&times;</button>
         <div class="modal-banner"></div>
-        
         <div class="modal-header-info">
-            <div class="modal-icon-lg">
-                <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#e67e22" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            <div style="display:flex; gap:24px; align-items:flex-end;">
+                <div class="modal-icon-lg" id="modalIconContainer"></div>
+                <div class="modal-title-group">
+                    <h2 id="modalTitle">Plugin Name</h2>
+                    <div class="modal-author-text">Created by <strong id="modalAuthor">Author</strong></div>
+                </div>
             </div>
-            <div class="modal-title-group">
-                <h2 id="modalTitle">Plugin Name</h2>
-                <div class="modal-author-text">Created by <strong id="modalAuthor">Author</strong></div>
+            <div class="admin-modal-controls" id="adminModalControls">
+                <button class="admin-action-btn edit-btn" id="modalEditBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> Edit Plugin</button>
+                <button class="admin-action-btn delete-btn" id="modalDeleteBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg> Delete</button>
             </div>
         </div>
 
@@ -696,7 +287,6 @@ LOADER
                     <div class="modal-tab" data-tab="commands">Commands</div>
                     <div class="modal-tab" data-tab="permissions">Permissions</div>
                 </div>
-
                 <div class="modal-description" id="modalDesc"></div>
             </div>
 
@@ -705,49 +295,29 @@ LOADER
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                     Download Now
                 </button>
-
                 <div class="sidebar-box">
                     <div class="stat-row">
-                        <span class="stat-label">
-                            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                            Downloads
-                        </span>
+                        <span class="stat-label"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Downloads</span>
                         <span class="stat-value" id="modalDownloads">0</span>
                     </div>
                     <div class="stat-divider"></div>
-                    
                     <div class="stat-row">
-                        <span class="stat-label">
-                            <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                            Version
-                        </span>
+                        <span class="stat-label"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Version</span>
                         <span class="stat-value" id="modalVersion"></span>
                     </div>
                     <div class="stat-divider"></div>
-
                     <div class="stat-row-col">
-                        <span class="stat-label">
-                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-                            Loaders
-                        </span>
+                        <span class="stat-label"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg> Loaders</span>
                         <div class="modal-loaders-wrapper" id="modalLoaders"></div>
                     </div>
                     <div class="stat-divider"></div>
-
                     <div class="stat-row">
-                        <span class="stat-label">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                            Category
-                        </span>
+                        <span class="stat-label"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> Category</span>
                         <span class="stat-value" id="modalCategory"></span>
                     </div>
                     <div class="stat-divider"></div>
-
                     <div class="stat-row">
-                        <span class="stat-label">
-                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                            Last Update
-                        </span>
+                        <span class="stat-label"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Last Update</span>
                         <span class="stat-value" id="modalCreated" style="font-weight: 500;">Today</span>
                     </div>
                 </div>
@@ -759,12 +329,153 @@ LOADER
 <div id="settingsModal" class="modal">
     <div class="mini-modal-content">
         <button class="close-modal" id="closeSettingsBtn">&times;</button>
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--orange-bright)" stroke-width="2" style="margin-bottom: 16px;">
-            <circle cx="12" cy="12" r="3"></circle>
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-        </svg>
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--orange-bright)" stroke-width="2" style="margin-bottom: 16px;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         <h2 style="color: #ffd7a5; font-size: 1.8rem; margin-bottom: 12px;">Settings</h2>
         <p style="color: #decbae; font-size: 1.05rem;">This panel is currently being worked on right now! Check back soon for updates.</p>
+    </div>
+</div>
+
+<div id="secretFooterX" title="Secret Trigger">&times;</div>
+
+<div id="roleSelectModal" class="modal">
+    <div class="mini-modal-content" style="max-width: 500px;">
+        <button class="close-modal" onclick="document.getElementById('roleSelectModal').style.display='none'">&times;</button>
+        <h2 style="color: #ffd7a5; font-size: 1.8rem; margin-bottom: 24px;">Select Role</h2>
+        <div style="display:flex; gap:15px; justify-content:center;">
+            <button class="admin-action-btn edit-btn" style="flex:1; justify-content:center; padding:16px;" onclick="openAdminWarning()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Admin
+            </button>
+            <button class="admin-action-btn" style="flex:1; justify-content:center; padding:16px; background:#7f8c8d; color:white;" onclick="alert('Moderator Mode Coming Soon!')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg> Moderator
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="adminWarningModal" class="modal">
+    <div class="mini-modal-content" style="max-width: 500px;">
+        <button class="close-modal" onclick="document.getElementById('adminWarningModal').style.display='none'">&times;</button>
+        <h2 style="color: #e74c3c; font-size: 1.8rem; margin-bottom: 12px;">Access Denied</h2>
+        <p style="color: #decbae; font-size: 1.05rem; margin-bottom: 20px;">woah you're not supposed to be here, just press the close button to leave!</p>
+        <div id="adminPassContainer" style="display:none;">
+            <input type="password" id="adminPasswordInput" class="admin-input" placeholder="Enter Secret Password...">
+        </div>
+    </div>
+</div>
+
+<div id="deleteConfirmModal" class="modal" style="z-index:1001;">
+    <div class="mini-modal-content">
+        <h2 style="color: #e74c3c; font-size: 1.5rem; margin-bottom: 12px;">Delete Plugin?</h2>
+        <p style="color: #decbae; margin-bottom: 24px;">Are you sure you want to delete this Plugin?</p>
+        <div style="display:flex; gap:15px; justify-content:center;">
+            <button class="admin-action-btn delete-btn" id="confirmDeleteYes" style="flex:1; justify-content:center;">Yes</button>
+            <button class="admin-action-btn edit-btn" onclick="document.getElementById('deleteConfirmModal').style.display='none'" style="flex:1; justify-content:center; background:#bdc3c7;">No</button>
+        </div>
+    </div>
+</div>
+
+<div id="pluginWizardModal" class="modal">
+    <div class="modal-content" style="max-width: 800px; min-height: auto;">
+        <button class="close-modal" onclick="document.getElementById('pluginWizardModal').style.display='none'">&times;</button>
+        <div class="modal-banner" style="height: 100px;"></div>
+        
+        <div style="padding: 30px; margin-top:-60px; position:relative; z-index:5;">
+            <h2 id="wizardTitle" style="color: #ffd7a5; font-size: 2rem; font-weight: 800; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Create Plugin - Step 1</h2>
+            
+            <div id="wizardStep1">
+                <div class="admin-form-group">
+                    <label>Icon URL</label>
+                    <input type="text" id="wizIcon" class="admin-input" placeholder="https://image.png">
+                </div>
+                <div style="display:flex; gap:20px;">
+                    <div class="admin-form-group" style="flex:1;">
+                        <label>Plugin Name</label>
+                        <input type="text" id="wizName" class="admin-input" placeholder="Plugin Name">
+                    </div>
+                    <div class="admin-form-group" style="flex:1;">
+                        <label>Made By (Author)</label>
+                        <input type="text" id="wizAuthor" class="admin-input" placeholder="Your Name">
+                    </div>
+                </div>
+                <div class="admin-form-group">
+                    <label>Short Description (Max 2 sentences / 100 words)</label>
+                    <input type="text" id="wizShortDesc" class="admin-input" placeholder="A brief description for the main page...">
+                </div>
+                
+                <div style="display:flex; gap:20px; margin-bottom:20px;">
+                    <div style="flex:1;">
+                        <label style="display: block; color: #d4a373; font-weight: 700; font-size: 0.85rem; margin-bottom: 8px;">Versions (Choose 1 or both)</label>
+                        <div class="multi-select-grid" id="wizVersions">
+                            <div class="multi-select-btn" data-val="1.8.8">1.8.8</div>
+                            <div class="multi-select-btn" data-val="1.12.2">1.12.2</div>
+                        </div>
+                    </div>
+                    <div style="flex:1;">
+                        <label style="display: block; color: #d4a373; font-weight: 700; font-size: 0.85rem; margin-bottom: 8px;">Loaders (1, 2, or all 3)</label>
+                        <div class="multi-select-grid" id="wizLoaders">
+                            <div class="multi-select-btn" data-val="Bukkit">Bukkit</div>
+                            <div class="multi-select-btn" data-val="Spigot">Spigot</div>
+                            <div class="multi-select-btn" data-val="Paper">Paper</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:20px; margin-bottom:20px;">
+                    <div style="flex:1;">
+                        <label style="display: block; color: #d4a373; font-weight: 700; font-size: 0.85rem; margin-bottom: 8px;">Categories (Max 2)</label>
+                        <div class="multi-select-grid" id="wizCategories">
+                            <div class="multi-select-btn" data-val="economy">Economy</div>
+                            <div class="multi-select-btn" data-val="optimization">Optimization</div>
+                            <div class="multi-select-btn" data-val="adventure">Adventure</div>
+                            <div class="multi-select-btn" data-val="utility">Utility</div>
+                            <div class="multi-select-btn" data-val="minigame">Minigame</div>
+                        </div>
+                    </div>
+                    <div style="flex:1;">
+                        <div class="admin-form-group">
+                            <label>Creation Date</label>
+                            <input type="text" id="wizDate" class="admin-input" placeholder="e.g. Apr 07, 2026">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="modal-download" onclick="nextWizardStep()">Continue to Details &rarr;</button>
+            </div>
+
+            <div id="wizardStep2" style="display:none;">
+                <div class="admin-form-group">
+                    <label>Download Link (.jar URL or Website)</label>
+                    <input type="text" id="wizDownloadLink" class="admin-input" placeholder="https://...">
+                </div>
+                
+                <div class="admin-form-group">
+                    <label>Tags (Max 3)</label>
+                    <div class="multi-select-grid" id="wizTags">
+                        <div class="multi-select-btn" data-val="Featured">⭐ Featured</div>
+                        <div class="multi-select-btn" data-val="Custom">🔥 Custom</div>
+                        <div class="multi-select-btn" data-val="Official">⭐ Official</div>
+                    </div>
+                </div>
+
+                <div class="admin-form-group">
+                    <label>Full Description (Markdown/Emojis allowed)</label>
+                    <textarea id="wizLongDesc" class="admin-textarea" placeholder="Write full description here..."></textarea>
+                </div>
+                <div class="admin-form-group">
+                    <label>Commands</label>
+                    <textarea id="wizCommands" class="admin-textarea" placeholder="List commands here..."></textarea>
+                </div>
+                <div class="admin-form-group">
+                    <label>Permissions</label>
+                    <textarea id="wizPermissions" class="admin-textarea" placeholder="List permissions here..."></textarea>
+                </div>
+
+                <div style="display:flex; gap:15px;">
+                    <button class="admin-action-btn edit-btn" style="flex:1; justify-content:center; padding:16px; background:#7f8c8d; color:white;" onclick="prevWizardStep()">&larr; Back</button>
+                    <button class="modal-download" style="flex:2; margin-bottom:0;" onclick="finishWizard()">Finish & Save Plugin</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -773,25 +484,28 @@ LOADER
 </footer>
 
 <script>
-// --- PLUGIN DATABASE ---
-const plugins = [
-{ id: 1, name: "EagleEssentials", author: "DevTeam", downloads: 0, versions: ["1.8.8", "1.12.2"], category: "utility", loaders: ["Bukkit", "Spigot", "Paper"], desc: "The essential plugin for any Eaglercraft server. Includes home, warp, teleport, and chat management.", commands: "/spawn - Teleports to spawn\n/home - Teleports to home", permissions: "essentials.spawn\nessentials.home", created: "Apr 07, 2026" },
-{ id: 2, name: "QuickShop", author: "ShopMaster", downloads: 0, versions: ["1.12.2"], category: "economy", loaders: ["Spigot", "Paper"], desc: "Easiest chest shop plugin ever. Just punch a chest and follow instructions.", commands: "/qs sell - Sell an item\n/qs buy - Buy an item", permissions: "quickshop.use", created: "Mar 12, 2026" },
-{ id: 3, name: "WorldOptimizer", author: "LagFree", downloads: 0, versions: ["1.8.8"], category: "optimization", loaders: ["Paper"], desc: "Optimizes entity AI and chunk loading. Specifically built for high-player count Eagler hosts.", commands: "", permissions: "", created: "Jan 24, 2026" },
-{ id: 4, name: "DungeonAdventure", author: "QuestDev", downloads: 0, versions: ["1.12.2"], category: "adventure", loaders: ["Bukkit", "Spigot", "Paper"], desc: "Procedural dungeon generator for 1.12.2. Includes custom loot tables and boss battles.", commands: "", permissions: "", created: "Dec 15, 2025" }
+// ================= THE DATABASE CODE (LOCAL STORAGE SYSTEM) =================
+// Instead of a fake array, we will check the user's browser memory (localStorage).
+// If they have saved plugins, we load them. If not, we generate the 4 default plugins.
+const defaultPlugins = [
+{ id: 1, name: "EagleEssentials", author: "DevTeam", downloads: 0, versions: ["1.8.8", "1.12.2"], category: ["utility"], loaders: ["Bukkit", "Spigot", "Paper"], desc: "The essential plugin for any Eaglercraft server. Includes home, warp, teleport, and chat management.", commands: "/spawn - Teleports to spawn\n/home - Teleports to home", permissions: "essentials.spawn\nessentials.home", created: "Apr 07, 2026", tags: ["Official", "Featured"], icon: "", link: "" },
+{ id: 2, name: "QuickShop", author: "ShopMaster", downloads: 0, versions: ["1.12.2"], category: ["economy"], loaders: ["Spigot", "Paper"], desc: "Easiest chest shop plugin ever. Just punch a chest and follow instructions.", commands: "/qs sell - Sell an item\n/qs buy - Buy an item", permissions: "quickshop.use", created: "Mar 12, 2026", tags: [], icon: "", link: "" },
+{ id: 3, name: "WorldOptimizer", author: "LagFree", downloads: 0, versions: ["1.8.8"], category: ["optimization"], loaders: ["Paper"], desc: "Optimizes entity AI and chunk loading. Specifically built for high-player count Eagler hosts.", commands: "", permissions: "", created: "Jan 24, 2026", tags: ["Featured"], icon: "", link: "" },
+{ id: 4, name: "DungeonAdventure", author: "QuestDev", downloads: 0, versions: ["1.12.2"], category: ["adventure"], loaders: ["Bukkit", "Spigot", "Paper"], desc: "Procedural dungeon generator for 1.12.2. Includes custom loot tables and boss battles.", commands: "", permissions: "", created: "Dec 15, 2025", tags: ["Custom"], icon: "", link: "" }
 ];
 
-let filters = {
-versions: ["1.8.8", "1.12.2"],
-categories: ["economy", "optimization", "adventure", "utility", "minigame"],
-loaders: ["Bukkit", "Spigot", "Paper"],
-search: "",
-sort: "default",
-limit: 10,
-page: 1
-};
+// This pulls your database from memory. If it's empty, it sets it to the default!
+let plugins = JSON.parse(localStorage.getItem('eaglerHostDB')) || defaultPlugins;
+
+// This function saves your database back to memory whenever you Add, Edit, Delete, or Download a plugin.
+function saveDatabase() {
+    localStorage.setItem('eaglerHostDB', JSON.stringify(plugins));
+}
+// ============================================================================
+
 
 // --- DOM ELEMENTS ---
+let filters = { versions: ["1.8.8", "1.12.2"], categories: ["economy", "optimization", "adventure", "utility", "minigame"], loaders: ["Bukkit", "Spigot", "Paper"], search: "", sort: "default", limit: 10, page: 1 };
 const pluginsGrid = document.getElementById("pluginsGrid");
 const searchInput = document.getElementById("searchInput");
 const sortBySelect = document.getElementById("sortBySelect");
@@ -812,49 +526,8 @@ const modalLoaders = document.getElementById("modalLoaders");
 const modalCreated = document.getElementById("modalCreated");
 const modalTabs = document.querySelectorAll(".modal-tab");
 
-// Tab Views
-const discoverView = document.getElementById("discoverView");
-const newsView = document.getElementById("newsView");
-const supportView = document.getElementById("supportView");
-
-// Settings Modal
-const settingsModal = document.getElementById("settingsModal");
-const closeSettingsBtn = document.getElementById("closeSettingsBtn");
-
 let currentPlugin = null;
 
-// --- TAB SWITCHING LOGIC ---
-function switchNavTab(tabId) {
-    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active-tab'));
-    discoverView.style.display = 'none';
-    newsView.style.display = 'none';
-    supportView.style.display = 'none';
-
-    if(tabId === 'discover') {
-        document.getElementById("discoverBtn").classList.add('active-tab');
-        discoverView.style.display = 'block';
-    } else if(tabId === 'news') {
-        document.getElementById("newsBtn").classList.add('active-tab');
-        newsView.style.display = 'block';
-    } else if(tabId === 'support') {
-        document.getElementById("supportBtn").classList.add('active-tab');
-        supportView.style.display = 'block';
-    }
-}
-
-document.getElementById("discoverBtn").addEventListener("click", () => switchNavTab('discover'));
-document.getElementById("newsBtn").addEventListener("click", () => switchNavTab('news'));
-document.getElementById("supportBtn").addEventListener("click", () => switchNavTab('support'));
-
-// --- SETTINGS MODAL LOGIC ---
-document.getElementById("settingsBtn").addEventListener("click", () => {
-    settingsModal.style.display = "flex";
-});
-closeSettingsBtn.addEventListener("click", () => {
-    settingsModal.style.display = "none";
-});
-
-// --- HELPER FUNCTIONS ---
 function getLoaderIcon(l) {
     if(l === "Paper") return `<img src="https://i.ibb.co/vGPnJYk/Untitled-design-7.png" alt="Paper" width="14" height="14" style="margin-right:4px; vertical-align:middle;">`;
     if(l === "Spigot") return `<img src="https://i.ibb.co/ymQYxRLJ/download-removebg-preview-5.png" alt="Spigot" width="14" height="14" style="margin-right:4px; vertical-align:middle;">`;
@@ -871,7 +544,6 @@ function getCategoryIcon(c) {
     return '';
 }
 
-// --- PAGINATION & RENDERING ---
 function renderPagination(totalPages) {
     const container = document.getElementById("paginationContainer");
     container.innerHTML = "";
@@ -919,20 +591,16 @@ function renderPagination(totalPages) {
 function renderPlugins() {
 pluginsGrid.innerHTML = "";
 let filtered = plugins.filter(p => {
-const matchesVer = p.versions.some(v => filters.versions.includes(v)); 
-const matchesCat = filters.categories.includes(p.category);
-const matchesLoader = p.loaders.some(l => filters.loaders.includes(l));
+const matchesVer = p.versions && p.versions.some(v => filters.versions.includes(v)); 
+const matchesCat = p.category && p.category.some(c => filters.categories.includes(c));
+const matchesLoader = p.loaders && p.loaders.some(l => filters.loaders.includes(l));
 const matchesSearch = p.name.toLowerCase().includes(filters.search.toLowerCase()) || p.desc.toLowerCase().includes(filters.search.toLowerCase());
 return matchesVer && matchesCat && matchesLoader && matchesSearch;
 });
 
-if (filters.sort === "downloads") {
-    filtered.sort((a, b) => b.downloads - a.downloads);
-} else if (filters.sort === "newest") {
-    filtered.sort((a, b) => new Date(b.created) - new Date(a.created));
-} else if (filters.sort === "az") {
-    filtered.sort((a, b) => a.name.localeCompare(b.name));
-}
+if (filters.sort === "downloads") { filtered.sort((a, b) => b.downloads - a.downloads); } 
+else if (filters.sort === "newest") { filtered.sort((a, b) => new Date(b.created) - new Date(a.created)); } 
+else if (filters.sort === "az") { filtered.sort((a, b) => a.name.localeCompare(b.name)); }
 
 const totalPages = Math.ceil(filtered.length / filters.limit);
 if (filters.page > totalPages) filters.page = totalPages || 1; 
@@ -940,24 +608,41 @@ const startIndex = (filters.page - 1) * filters.limit;
 const limitedPlugins = filtered.slice(startIndex, startIndex + filters.limit);
 
 if (limitedPlugins.length === 0) {
-pluginsGrid.innerHTML = `<div style="text-align:center; padding:40px; color:#c9aa7b; font-weight:600;">No plugins found matching your selection.</div>`;
-document.getElementById("paginationContainer").innerHTML = "";
-return;
+    pluginsGrid.innerHTML = `<div style="text-align:center; padding:40px; color:#c9aa7b; font-weight:600;">No plugins found matching your selection.</div>`;
+    document.getElementById("paginationContainer").innerHTML = "";
+    return;
 }
 
 limitedPlugins.forEach(p => {
 const card = document.createElement("div");
 card.className = "plugin-card";
 
+let tagsHtml = "";
+if (p.tags && p.tags.length > 0) {
+    tagsHtml = `<div class="plugin-tags-container">`;
+    p.tags.forEach(t => {
+        if(t === "Featured") tagsHtml += `<span class="plugin-tag tag-featured">⭐ Featured</span>`;
+        if(t === "Custom") tagsHtml += `<span class="plugin-tag tag-custom">🔥 Custom</span>`;
+        if(t === "Official") tagsHtml += `<span class="plugin-tag tag-official">⭐ Official</span>`;
+    });
+    tagsHtml += `</div>`;
+}
+
 const loadersHtml = p.loaders.map(l => `<span class="loader-tag ${l.toLowerCase()}">${getLoaderIcon(l)} ${l}</span>`).join(' ');
+const defaultIcon = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e67e22" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>`;
 
 card.innerHTML = `
 <div class="card-top">
     <div class="plugin-info-main">
-        <div class="plugin-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e67e22" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg></div>
-        <div class="plugin-name-section">
-            <h3>${p.name}</h3>
-            <div class="plugin-author">By ${p.author}</div>
+        <div style="display:flex; flex-direction:column;">
+            ${tagsHtml}
+            <div style="display:flex; gap:15px; align-items:center;">
+                <div class="plugin-icon">${p.icon ? `<img src="${p.icon}">` : defaultIcon}</div>
+                <div class="plugin-name-section">
+                    <h3>${p.name}</h3>
+                    <div class="plugin-author">By ${p.author}</div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="card-downloads"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> ${p.downloads} Downloads</div>
@@ -969,7 +654,7 @@ card.innerHTML = `
         <div class="meta-divider"></div>
         ${loadersHtml}
         <div class="meta-divider"></div>
-        <span class="category-tag">${getCategoryIcon(p.category)} ${p.category.charAt(0).toUpperCase() + p.category.slice(1)}</span>
+        <span class="category-tag">${getCategoryIcon(p.category[0])} ${p.category[0].charAt(0).toUpperCase() + p.category[0].slice(1)}${p.category.length > 1 ? '...' : ''}</span>
     </div>
     <div class="date-tag">Made on: ${p.created}</div>
 </div>
@@ -981,64 +666,19 @@ pluginsGrid.appendChild(card);
 renderPagination(totalPages);
 }
 
-// --- EVENT LISTENERS FOR FILTERS ---
 searchInput.addEventListener("input", (e) => { filters.search = e.target.value; filters.page = 1; renderPlugins(); });
+sortBySelect.addEventListener("change", (e) => { filters.sort = e.target.value; filters.page = 1; renderPlugins(); });
+viewLimitSelect.addEventListener("change", (e) => { filters.limit = parseInt(e.target.value); filters.page = 1; renderPlugins(); });
 
-sortBySelect.addEventListener("change", (e) => {
-    filters.sort = e.target.value;
-    filters.page = 1; 
-    renderPlugins();
-});
+versionBtns.forEach(btn => { btn.addEventListener("click", () => { const v = btn.dataset.ver; if(filters.versions.includes(v)) { filters.versions = filters.versions.filter(x => x !== v); btn.classList.remove("active-version"); } else { filters.versions.push(v); btn.classList.add("active-version"); } filters.page = 1; renderPlugins(); }); });
+categoryCheckboxes.forEach(cb => { cb.addEventListener("change", () => { filters.categories = Array.from(categoryCheckboxes).filter(i => i.checked).map(i => i.value); filters.page = 1; renderPlugins(); }); });
+loaderBtns.forEach(btn => { btn.addEventListener("click", () => { const l = btn.dataset.loader; if(filters.loaders.includes(l)) { filters.loaders = filters.loaders.filter(x => x !== l); btn.classList.remove("active-loader"); } else { filters.loaders.push(l); btn.classList.add("active-loader"); } filters.page = 1; renderPlugins(); }); });
 
-viewLimitSelect.addEventListener("change", (e) => {
-    filters.limit = parseInt(e.target.value);
-    filters.page = 1; 
-    renderPlugins();
-});
-
-versionBtns.forEach(btn => {
-btn.addEventListener("click", () => {
-const v = btn.dataset.ver;
-if(filters.versions.includes(v)) {
-filters.versions = filters.versions.filter(x => x !== v);
-btn.classList.remove("active-version");
-} else {
-filters.versions.push(v);
-btn.classList.add("active-version");
-}
-filters.page = 1;
-renderPlugins();
-});
-});
-
-categoryCheckboxes.forEach(cb => {
-cb.addEventListener("change", () => {
-filters.categories = Array.from(categoryCheckboxes).filter(i => i.checked).map(i => i.value);
-filters.page = 1;
-renderPlugins();
-});
-});
-
-loaderBtns.forEach(btn => {
-btn.addEventListener("click", () => {
-const l = btn.dataset.loader;
-if(filters.loaders.includes(l)) {
-filters.loaders = filters.loaders.filter(x => x !== l);
-btn.classList.remove("active-loader");
-} else {
-filters.loaders.push(l);
-btn.classList.add("active-loader");
-}
-filters.page = 1;
-renderPlugins();
-});
-});
-
-// --- PLUGIN DETAILS MODAL LOGIC ---
 function updateModalTabContent(tabName) {
     if (!currentPlugin) return;
     if (tabName === "desc") {
-        modalDesc.innerText = currentPlugin.desc + "\n\n(Full markdown description logic can go here)";
+        let longD = currentPlugin.longDesc ? currentPlugin.longDesc : currentPlugin.desc + "\n\n(No additional description provided.)";
+        modalDesc.innerText = longD;
     } else if (tabName === "commands") {
         modalDesc.innerText = currentPlugin.commands ? currentPlugin.commands : "This Plugin works without commands!";
     } else if (tabName === "permissions") {
@@ -1060,9 +700,12 @@ currentPlugin = plugin;
 modalTitle.innerText = plugin.name;
 modalAuthor.innerText = plugin.author;
 
-modalVersion.innerHTML = plugin.versions.map(v => `<span class="version-tag">${v}</span>`).join('<span style="color:#4d3522; font-weight: 300; margin: 0 2px;">|</span>');
+const lgIcon = document.getElementById("modalIconContainer");
+const defaultIcon = `<svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#e67e22" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>`;
+lgIcon.innerHTML = plugin.icon ? `<img src="${plugin.icon}">` : defaultIcon;
 
-modalCategory.innerHTML = `<span class="category-tag">${getCategoryIcon(plugin.category)} ${plugin.category.charAt(0).toUpperCase() + plugin.category.slice(1)}</span>`;
+modalVersion.innerHTML = plugin.versions.map(v => `<span class="version-tag">${v}</span>`).join('<span style="color:#4d3522; font-weight: 300; margin: 0 2px;">|</span>');
+modalCategory.innerHTML = plugin.category.map(c => `<span class="category-tag">${getCategoryIcon(c)} ${c.charAt(0).toUpperCase() + c.slice(1)}</span>`).join(' ');
 
 modalDownloads.innerText = plugin.downloads.toLocaleString();
 modalCreated.innerText = plugin.created;
@@ -1073,6 +716,12 @@ modalTabs.forEach(t => t.classList.remove("active"));
 modalTabs[0].classList.add("active");
 updateModalTabContent("desc");
 
+if (isAdminMode) {
+    document.getElementById("adminModalControls").style.display = "flex";
+} else {
+    document.getElementById("adminModalControls").style.display = "none";
+}
+
 modal.style.display = "flex";
 }
 
@@ -1081,21 +730,240 @@ function closeModal() { modal.style.display = "none"; }
 modalDownload.addEventListener("click", () => { 
     if(currentPlugin) {
         currentPlugin.downloads += 1;
+        saveDatabase(); // SAVES TO BROWSER DATABASE
         renderPlugins();
         modalDownloads.innerText = currentPlugin.downloads.toLocaleString();
-        alert(`Downloading ${currentPlugin.name} v${currentPlugin.versions[0]}`); 
+        
+        if(currentPlugin.link) {
+            window.open(currentPlugin.link, '_blank');
+        } else {
+            alert(`Downloading ${currentPlugin.name} v${currentPlugin.versions[0]}`); 
+        }
     }
 });
 
 closeModalBtn.addEventListener("click", closeModal);
 window.addEventListener("click", (e) => { 
     if(e.target === modal) closeModal(); 
-    if(e.target === settingsModal) settingsModal.style.display = "none";
+    if(e.target === document.getElementById("settingsModal")) document.getElementById("settingsModal").style.display = "none";
+    if(e.target === document.getElementById("adminWarningModal")) document.getElementById("adminWarningModal").style.display = "none";
+    if(e.target === document.getElementById("pluginWizardModal")) document.getElementById("pluginWizardModal").style.display = "none";
+    if(e.target === document.getElementById("roleSelectModal")) document.getElementById("roleSelectModal").style.display = "none";
 });
 
-// Initialization
+function switchNavTab(tabId) {
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active-tab'));
+    document.getElementById("discoverView").style.display = 'none';
+    document.getElementById("newsView").style.display = 'none';
+    document.getElementById("supportView").style.display = 'none';
+
+    if(tabId === 'discover') { document.getElementById("discoverBtn").classList.add('active-tab'); document.getElementById("discoverView").style.display = 'block'; } 
+    else if(tabId === 'news') { document.getElementById("newsBtn").classList.add('active-tab'); document.getElementById("newsView").style.display = 'block'; } 
+    else if(tabId === 'support') { document.getElementById("supportBtn").classList.add('active-tab'); document.getElementById("supportView").style.display = 'block'; }
+}
+
+document.getElementById("discoverBtn").addEventListener("click", () => switchNavTab('discover'));
+document.getElementById("newsBtn").addEventListener("click", () => switchNavTab('news'));
+document.getElementById("supportBtn").addEventListener("click", () => switchNavTab('support'));
+
+document.getElementById("settingsBtn").addEventListener("click", () => { document.getElementById("settingsModal").style.display = "flex"; });
+document.getElementById("closeSettingsBtn").addEventListener("click", () => { document.getElementById("settingsModal").style.display = "none"; });
+
+// ================= SECRET ADMIN LOGIC & KEYLOGGERS =================
+let isAdminMode = false;
+let keyBuffer1 = "";
+let keyBuffer2 = "";
+let isEditing = false;
+let editingId = null;
+
+// Secret Sequence Listeners
+window.addEventListener('keydown', (e) => {
+    // Only track if both modifiers are held
+    if (e.shiftKey && e.altKey) {
+        
+        let char = "";
+        if (e.code.startsWith('Key')) {
+            char = e.code.replace('Key', '');
+        } else {
+            char = e.key.toUpperCase();
+        }
+        
+        if (char) {
+            keyBuffer1 += char;
+            keyBuffer2 += char;
+            
+            // Keep buffer sizes small
+            if (keyBuffer1.length > 4) keyBuffer1 = keyBuffer1.slice(-4);
+            if (keyBuffer2.length > 3) keyBuffer2 = keyBuffer2.slice(-3);
+
+            // Trigger Footer X (OPKU)
+            if (keyBuffer1 === "OPKU") {
+                const footerX = document.getElementById("secretFooterX");
+                footerX.style.display = "block";
+                setTimeout(() => { footerX.style.display = "none"; }, 15000);
+                keyBuffer1 = "";
+            }
+
+            // Trigger Password Box in Warning Modal (KOP)
+            if (keyBuffer2 === "KOP" && document.getElementById("adminWarningModal").style.display === "flex") {
+                document.getElementById("adminPassContainer").style.display = "block";
+                keyBuffer2 = "";
+            }
+        }
+    }
+});
+
+// Footer X Click
+document.getElementById("secretFooterX").addEventListener("click", () => {
+    document.getElementById("secretFooterX").style.display = "none";
+    document.getElementById("roleSelectModal").style.display = "flex";
+});
+
+function openAdminWarning() {
+    document.getElementById("roleSelectModal").style.display = "none";
+    document.getElementById("adminWarningModal").style.display = "flex";
+}
+
+// Password Validation
+document.getElementById("adminPasswordInput").addEventListener("input", (e) => {
+    if(e.target.value === "N91@k0-=+19x$(Kpe?./1x13EHgo14950-+x13c14%*92") {
+        isAdminMode = true;
+        document.getElementById("adminWarningModal").style.display = "none";
+        document.getElementById("headerAddPluginBtn").style.display = "flex";
+        e.target.value = "";
+        alert("Admin Mode Unlocked!");
+    }
+});
+
+// Multi-select buttons in wizard
+document.querySelectorAll(".multi-select-btn").forEach(btn => {
+    btn.addEventListener("click", function() {
+        const parentId = this.parentElement.id;
+        
+        // Category Max 2 Logic
+        if (parentId === "wizCategories" && !this.classList.contains("selected")) {
+            if (this.parentElement.querySelectorAll(".selected").length >= 2) return;
+        }
+        // Tags Max 3 Logic
+        if (parentId === "wizTags" && !this.classList.contains("selected")) {
+            if (this.parentElement.querySelectorAll(".selected").length >= 3) return;
+        }
+        
+        this.classList.toggle("selected");
+    });
+});
+
+// Open "Add Plugin"
+document.getElementById("headerAddPluginBtn").addEventListener("click", () => {
+    isEditing = false;
+    document.getElementById("wizardTitle").innerText = "Create Plugin - Step 1";
+    resetWizard();
+    document.getElementById("wizardStep1").style.display = "block";
+    document.getElementById("wizardStep2").style.display = "none";
+    document.getElementById("pluginWizardModal").style.display = "flex";
+});
+
+// Open "Edit Plugin"
+document.getElementById("modalEditBtn").addEventListener("click", () => {
+    isEditing = true;
+    editingId = currentPlugin.id;
+    document.getElementById("wizardTitle").innerText = "Edit Plugin - Step 1";
+    resetWizard();
+    
+    document.getElementById("wizIcon").value = currentPlugin.icon || "";
+    document.getElementById("wizName").value = currentPlugin.name;
+    document.getElementById("wizAuthor").value = currentPlugin.author;
+    document.getElementById("wizShortDesc").value = currentPlugin.desc;
+    document.getElementById("wizDate").value = currentPlugin.created;
+    document.getElementById("wizDownloadLink").value = currentPlugin.link || "";
+    document.getElementById("wizLongDesc").value = currentPlugin.longDesc || currentPlugin.desc;
+    document.getElementById("wizCommands").value = currentPlugin.commands || "";
+    document.getElementById("wizPermissions").value = currentPlugin.permissions || "";
+
+    document.querySelectorAll("#wizVersions .multi-select-btn").forEach(b => { if(currentPlugin.versions.includes(b.dataset.val)) b.classList.add("selected"); });
+    document.querySelectorAll("#wizLoaders .multi-select-btn").forEach(b => { if(currentPlugin.loaders.includes(b.dataset.val)) b.classList.add("selected"); });
+    document.querySelectorAll("#wizCategories .multi-select-btn").forEach(b => { if(currentPlugin.category.includes(b.dataset.val)) b.classList.add("selected"); });
+    if(currentPlugin.tags) {
+        document.querySelectorAll("#wizTags .multi-select-btn").forEach(b => { if(currentPlugin.tags.includes(b.dataset.val)) b.classList.add("selected"); });
+    }
+
+    document.getElementById("pluginModal").style.display = "none";
+    document.getElementById("wizardStep1").style.display = "block";
+    document.getElementById("wizardStep2").style.display = "none";
+    document.getElementById("pluginWizardModal").style.display = "flex";
+});
+
+// Open "Delete Confirm"
+document.getElementById("modalDeleteBtn").addEventListener("click", () => {
+    document.getElementById("deleteConfirmModal").style.display = "flex";
+});
+
+// Confirm Delete Yes
+document.getElementById("confirmDeleteYes").addEventListener("click", () => {
+    plugins = plugins.filter(p => p.id !== currentPlugin.id);
+    saveDatabase(); // SAVES TO BROWSER DATABASE
+    document.getElementById("deleteConfirmModal").style.display = "none";
+    document.getElementById("pluginModal").style.display = "none";
+    renderPlugins();
+});
+
+// Wizard Steps
+function resetWizard() {
+    document.querySelectorAll(".admin-input, .admin-textarea").forEach(i => i.value = "");
+    document.querySelectorAll(".multi-select-btn").forEach(b => b.classList.remove("selected"));
+}
+
+function nextWizardStep() {
+    document.getElementById("wizardTitle").innerText = isEditing ? "Edit Plugin - Step 2" : "Create Plugin - Step 2";
+    document.getElementById("wizardStep1").style.display = "none";
+    document.getElementById("wizardStep2").style.display = "block";
+}
+
+function prevWizardStep() {
+    document.getElementById("wizardTitle").innerText = isEditing ? "Edit Plugin - Step 1" : "Create Plugin - Step 1";
+    document.getElementById("wizardStep2").style.display = "none";
+    document.getElementById("wizardStep1").style.display = "block";
+}
+
+// Finish & Save Wizard
+function finishWizard() {
+    const v = Array.from(document.querySelectorAll("#wizVersions .selected")).map(b => b.dataset.val);
+    const l = Array.from(document.querySelectorAll("#wizLoaders .selected")).map(b => b.dataset.val);
+    const c = Array.from(document.querySelectorAll("#wizCategories .selected")).map(b => b.dataset.val);
+    const t = Array.from(document.querySelectorAll("#wizTags .selected")).map(b => b.dataset.val);
+
+    const newPlugin = {
+        id: isEditing ? editingId : Date.now(),
+        name: document.getElementById("wizName").value || "Unnamed Plugin",
+        author: document.getElementById("wizAuthor").value || "Unknown",
+        downloads: isEditing ? currentPlugin.downloads : 0,
+        versions: v.length > 0 ? v : ["1.8.8"],
+        category: c.length > 0 ? c : ["utility"],
+        loaders: l.length > 0 ? l : ["Bukkit"],
+        desc: document.getElementById("wizShortDesc").value || "No description provided.",
+        longDesc: document.getElementById("wizLongDesc").value || "",
+        commands: document.getElementById("wizCommands").value || "",
+        permissions: document.getElementById("wizPermissions").value || "",
+        created: document.getElementById("wizDate").value || "Unknown",
+        tags: t,
+        icon: document.getElementById("wizIcon").value || "",
+        link: document.getElementById("wizDownloadLink").value || ""
+    };
+
+    if (isEditing) {
+        const index = plugins.findIndex(p => p.id === editingId);
+        if (index !== -1) plugins[index] = newPlugin;
+    } else {
+        plugins.unshift(newPlugin); // Add new plugin to the beginning
+    }
+
+    saveDatabase(); // SAVES TO BROWSER DATABASE
+    document.getElementById("pluginWizardModal").style.display = "none";
+    renderPlugins();
+}
+
+// Initial Render
 renderPlugins();
 </script>
 </body>
 </html>
-
