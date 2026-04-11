@@ -3,6 +3,7 @@
 <head>
     <link rel="icon" type="image/png" href="https://i.imgur.com/1saWHjr.png">
 <link rel="shortcut icon" href="https://i.imgur.com/1saWHjr.png">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Eagler.Host Plugins</title>
@@ -329,7 +330,20 @@ document.getElementById("viewLimitSelect").addEventListener("change",e=>{ filter
 document.querySelectorAll(".version-btn:not(.soon)").forEach(btn=>btn.addEventListener("click",()=>{ const v=btn.dataset.ver; if(filters.versions.includes(v)){ filters.versions=filters.versions.filter(x=>x!==v); btn.classList.remove("active-version"); }else{ filters.versions.push(v); btn.classList.add("active-version"); } filters.page=1; renderPlugins(); }));
 document.querySelectorAll("#categoryCheckboxes input").forEach(cb=>cb.addEventListener("change",()=>{ filters.categories=Array.from(document.querySelectorAll("#categoryCheckboxes input:checked")).map(i=>i.value); filters.page=1; renderPlugins(); }));
 document.querySelectorAll(".loader-btn").forEach(btn=>btn.addEventListener("click",()=>{ const l=btn.dataset.loader; if(filters.loaders.includes(l)){ filters.loaders=filters.loaders.filter(x=>x!==l); btn.classList.remove("active-loader"); }else{ filters.loaders.push(l); btn.classList.add("active-loader"); } filters.page=1; renderPlugins(); }));
-renderPlugins();
+// ============ SUPABASE CODE ============
+const SUPABASE_URL = "https://jwylhguiitxihrexhhmt.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_xBQ4piWWzqNAEFRY2UMRDA_3hUV1mH_";
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+async function loadPlugins() {
+    const { data, error } = await supabase.from('plugins').select('*');
+    if (data && data.length > 0) {
+        plugins = data;
+        renderPlugins();
+    }
+}
+
+loadPlugins();
 </script>
 </body>
 </html>
