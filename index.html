@@ -238,9 +238,9 @@
 
     function saveDatabase() {
         localStorage.setItem('eaglerHostDB', JSON.stringify(plugins));
-        if (typeof supabase !== 'undefined') {
+        if (typeof window.supabaseClient !== 'undefined') {
             for (const plugin of plugins) {
-                supabase.from('plugins').upsert(plugin);
+                window.supabaseClient.from('plugins').upsert(plugin);
             }
         }
     }
@@ -393,13 +393,13 @@
     // ============ SUPABASE CODE ============
     const SUPABASE_URL = "https://jwylhguiitxihrexhhmt.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_xBQ4piWWzqNAEFRY2UMRDA_3hUV1mH_";
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     async function loadPlugins() {
-        const { data, error } = await supabase.from('plugins').select('*');
+        const { data, error } = await window.supabaseClient.from('plugins').select('*');
         if (error) {
             console.error("Supabase error:", error);
-            renderPlugins(); // Fallback to localStorage
+            renderPlugins();
             return;
         }
         if (data && data.length > 0) {
