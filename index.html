@@ -238,9 +238,11 @@
 
     function saveDatabase() {
         localStorage.setItem('eaglerHostDB', JSON.stringify(plugins));
-        if (typeof window.supabaseClient !== 'undefined') {
+        if (window.supabaseClient) {
             for (const plugin of plugins) {
-                window.supabaseClient.from('plugins').upsert(plugin);
+                window.supabaseClient.from('plugins').upsert(plugin).then(({ error }) => {
+                    if (error) console.error("Error saving plugin:", plugin.name, error);
+                });
             }
         }
     }
@@ -347,35 +349,55 @@
     }
     window.nextWizardStep=function(){ document.getElementById("wizardTitle").innerText=isEditing?"Edit Plugin - Step 2":"Create Plugin - Step 2"; document.getElementById("wizardStep1").style.display="none"; document.getElementById("wizardStep2").style.display="block"; };
     window.prevWizardStep=function(){ document.getElementById("wizardTitle").innerText=isEditing?"Edit Plugin - Step 1":"Create Plugin - Step 1"; document.getElementById("wizardStep2").style.display="none"; document.getElementById("wizardStep1").style.display="block"; };
-    window.finishWizard=function(){
-        const v=Array.from(document.querySelectorAll("#wizVersions .selected")).map(b=>b.dataset.val);
-        const l=Array.from(document.querySelectorAll("#wizLoaders .selected")).map(b=>b.dataset.val);
-        const c=Array.from(document.querySelectorAll("#wizCategories .selected")).map(b=>b.dataset.val);
-        const t=Array.from(document.querySelectorAll("#wizTags .selected")).map(b=>b.dataset.val);
-        const newPlugin={
-            id:isEditing?editingId:Date.now(),
-            name:document.getElementById("wizName").value||"Unnamed",
-            author:document.getElementById("wizAuthor").value||"Unknown",
-            downloads:isEditing?currentPlugin.downloads:0,
-            versions:v.length?v:["1.8.8"],
-            category:c.length?c:["utility"],
-            loaders:l.length?l:["Bukkit"],
-            description:document.getElementById("wizShortDesc").value||"No description",
-            long_description:document.getElementById("wizLongDesc").value||"",
-            commands:document.getElementById("wizCommands").value||"",
-            permissions:document.getElementById("wizPermissions").value||"",
-            created:document.getElementById("wizDate").value||"Unknown",
-            tags:t,
-            icon:document.getElementById("wizIcon").value||"",
-            download_link:document.getElementById("wizDownloadLink").value||""
+    window.finishWizard = async function() {
+        console.log("Save button clicked!");
+        
+        const v = Array.from(document.querySelectorAll("#wizVersions .selected")).map(b => b.dataset.val);
+        const l = Array.from(document.querySelectorAll("#wizLoaders .selected")).map(b => b.dataset.val);
+        const c = Array.from(document.querySelectorAll("#wizCategories .selected")).map(b => b.dataset.val);
+        const t = Array.from(document.querySelectorAll("#wizTags .selected")).map(b => b.dataset.val);
+
+        const newPlugin = {
+            id: isEditing ? editingId : Date.now(),
+            name: document.getElementById("wizName").value || "Unnamed",
+            author: document.getElementById("wizAuthor").value || "Unknown",
+            downloads: isEditing ? (currentPlugin?.downloads || 0) : 0,
+            versions: v.length ? v : ["1.8.8"],
+            category: c.length ? c : ["utility"],
+            loaders: l.length ? l : ["Bukkit"],
+            description: document.getElementById("wizShortDesc").value || "No description",
+            long_description: document.getElementById("wizLongDesc").value || "",
+            commands: document.getElementById("wizCommands").value || "",
+            permissions: document.getElementById("wizPermissions").value || "",
+            created: document.getElementById("wizDate").value || new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
+            tags: t,
+            icon: document.getElementById("wizIcon").value || "",
+            download_link: document.getElementById("wizDownloadLink").value || ""
         };
-        if(isEditing){
-            let idx=plugins.findIndex(p=>p.id===editingId);
-            if(idx!==-1) plugins[idx]=newPlugin;
-        } else plugins.unshift(newPlugin);
-        saveDatabase();
-        document.getElementById("pluginWizardModal").style.display="none";
+
+        console.log("Saving plugin:", newPlugin);
+
+        const { error } = await window.supabaseClient.from('plugins').upsert(newPlugin);
+        
+        if (error) {
+            console.error("Supabase error:", error);
+            alert("Failed to save: " + error.message);
+            return;
+        }
+        
+        console.log("Saved successfully!");
+        
+        if (isEditing) {
+            let idx = plugins.findIndex(p => p.id === editingId);
+            if (idx !== -1) plugins[idx] = newPlugin;
+        } else {
+            plugins.unshift(newPlugin);
+        }
+        
+        localStorage.setItem('eaglerHostDB', JSON.stringify(plugins));
+        document.getElementById("pluginWizardModal").style.display = "none";
         renderPlugins();
+        alert("Plugin saved to Supabase!");
     };
     document.querySelectorAll(".multi-select-btn").forEach(btn=>btn.addEventListener("click",function(){ const parentId=this.parentElement.id; if(parentId==="wizCategories" && !this.classList.contains("selected") && this.parentElement.querySelectorAll(".selected").length>=2) return; if(parentId==="wizTags" && !this.classList.contains("selected") && this.parentElement.querySelectorAll(".selected").length>=3) return; this.classList.toggle("selected"); }));
     document.getElementById("discoverBtn").addEventListener("click",()=>{ document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active-tab')); document.getElementById("discoverBtn").classList.add('active-tab'); document.getElementById("discoverView").style.display='block'; document.getElementById("newsView").style.display='none'; document.getElementById("supportView").style.display='none'; });
