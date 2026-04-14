@@ -91,7 +91,7 @@
         .plugin-info-main { display: flex; gap: 15px; align-items: center; }
         .plugin-icon { width: 52px; height: 52px; background: linear-gradient(145deg, #3a281c, #261a10); border-radius: 16px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-dim); overflow: hidden;}
         .plugin-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .plugin-name-section h3 { font-size: 1.5rem; font-weight: 800; color: #ffd7a5; }
+        .plugin-name-section h3 { font-size: 1.25rem; font-weight: 800; color: #ffd7a5; }
         .plugin-author { font-size: 0.75rem; color: #c9aa7b; }
         .card-downloads { color: var(--orange-bright); font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; }
         .plugin-description { color: #decbae; font-size: 1rem; margin-bottom: 20px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -330,7 +330,36 @@
     document.getElementById("headerAddPluginBtn").addEventListener("click",()=>{ isEditing=false; resetWizard(); document.getElementById("wizardStep1").style.display="block"; document.getElementById("wizardStep2").style.display="none"; document.getElementById("pluginWizardModal").style.display="flex"; });
     document.getElementById("modalEditBtn").addEventListener("click",()=>{ isEditing=true; editingId=currentPlugin.id; resetWizard(); fillWizardWithCurrent(); document.getElementById("pluginModal").style.display="none"; document.getElementById("wizardStep1").style.display="block"; document.getElementById("wizardStep2").style.display="none"; document.getElementById("pluginWizardModal").style.display="flex"; });
     document.getElementById("modalDeleteBtn").addEventListener("click",()=>{ document.getElementById("deleteConfirmModal").style.display="flex"; });
-    document.getElementById("confirmDeleteYes").addEventListener("click",()=>{ plugins = plugins.filter(p=>p.id !== currentPlugin.id); saveDatabase(); renderPlugins(); document.getElementById("deleteConfirmModal").style.display="none"; document.getElementById("pluginModal").style.display="none"; });
+    
+    // FIXED DELETE FUNCTION - Deletes from Supabase permanently
+    document.getElementById("confirmDeleteYes").addEventListener("click", async () => {
+        if (!currentPlugin) return;
+        
+        // Delete from Supabase
+        const { error } = await window.supabaseClient.from('plugins').delete().eq('id', currentPlugin.id);
+        
+        if (error) {
+            console.error("Delete error:", error);
+            alert("Failed to delete: " + error.message);
+            return;
+        }
+        
+        // Delete from local array
+        plugins = plugins.filter(p => p.id !== currentPlugin.id);
+        
+        // Save to localStorage
+        localStorage.setItem('eaglerHostDB', JSON.stringify(plugins));
+        
+        // Refresh display
+        renderPlugins();
+        
+        // Close modals
+        document.getElementById("deleteConfirmModal").style.display = "none";
+        document.getElementById("pluginModal").style.display = "none";
+        
+        alert("Plugin deleted successfully!");
+    });
+    
     function resetWizard(){ document.querySelectorAll(".admin-input, .admin-textarea").forEach(i=>i.value=""); document.querySelectorAll(".multi-select-btn").forEach(b=>b.classList.remove("selected")); }
     function fillWizardWithCurrent(){
         document.getElementById("wizIcon").value=currentPlugin.icon||"";
